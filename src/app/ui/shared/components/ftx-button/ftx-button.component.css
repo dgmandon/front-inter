@@ -1,0 +1,42 @@
+
+.btn-danger{
+  background-color: rgb(199, 62, 62);
+  border-color: transparent;
+}
+.btn-sm {
+  --bs-btn-padding-y: 0.2rem;
+  --bs-btn-padding-x: 0.2rem;
+  --bs-btn-font-size: 0.8rem;
+  --bs-btn-border-radius: var(--bs-border-radius-sm);
+}
+.btn-primary{
+  background-color: rgb(85, 128, 221);
+  border-color: transparent;
+
+
+
+}
+.btn-success{
+  background-color: rgb(216, 145, 38);
+  --mdb-btn-box-shadow: 0 4px 9px -4px rgb(216, 145, 38);
+  border-color: transparent;
+  --mdb-btn-bg: rgb(216, 145, 38);
+  --mdb-btn-color: #fff;
+  /* --mdb-btn-box-shadow: 0 4px 9px -4px #14a44d; */
+  --mdb-btn-hover-bg: rgb(216, 145, 38);
+  --mdb-btn-hover-color: #fff;
+  --mdb-btn-focus-bg: rgb(216, 145, 38);
+  --mdb-btn-focus-color: #fff;
+  --mdb-btn-active-bg: rgb(216, 145, 38);
+  --mdb-btn-active-color: #fff;
+  --mdb-btn-box-shadow-state: 0 8px 9px -4px rgba(235, 178, 93, 0.9), 0 4px 18px 0 rgb(216, 145, 38,.2);
+
+
+}
+
+
+@media only screen and (max-width: 1230px) {
+  .align-middle {
+    display: none;
+  }
+}

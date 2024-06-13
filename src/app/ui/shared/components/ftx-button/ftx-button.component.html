@@ -1,0 +1,15 @@
+<button
+  type="button"
+  (click)="Click()"
+  [ngClass]="{ 'btn-sm': onlyIcon || small }"
+  class="btn btn-{{ buttonType }}   align-items-between mx-1"
+  [disabled]="disabled"
+>
+  @if(positionIcon === 'left' && icon){
+  <ftx-icon [icon]="icon" />
+  } @if (!onlyIcon) {
+  <span class="align-middle">{{ content }}</span>
+  } @if(positionIcon === 'right' && icon){
+  <ftx-icon [icon]="icon" />
+  }
+</button>

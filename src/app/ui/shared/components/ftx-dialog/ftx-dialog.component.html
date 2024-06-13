@@ -1,0 +1,25 @@
+<mat-dialog-content>
+  @if (componet) {
+  <ng-content select="[content]"></ng-content>
+  }@else{
+  {{ data.content }}
+  }
+</mat-dialog-content>
+@if(!componet){
+<mat-dialog-actions>
+  <ftx-button
+    [icon]="'check_circle'"
+    (eventClick)="Confirm(true)"
+    [content]="'Ok'"
+    [positionIcon]="'right'"
+  />
+  <ftx-button
+    (eventClick)="Confirm(false)"
+    [buttonType]="'danger'"
+    [content]="'Cancelar'"
+    [icon]="'cancel'"
+    [positionIcon]="'right'"
+  />
+</mat-dialog-actions>
+
+}

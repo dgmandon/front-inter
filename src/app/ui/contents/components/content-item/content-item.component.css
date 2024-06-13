@@ -1,0 +1,11 @@
+.item{
+  display:flex;
+
+}
+
+
+@media (max-width: 800px) {
+  .item{
+    display: block;
+  }
+}

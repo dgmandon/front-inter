@@ -1,0 +1,25 @@
+<div class="custom-input-container textDiv">
+  <label *ngIf="viewLabel" class="labelInput">{{ label }}</label>
+  @if (type === 'textarea') {
+  <textarea
+    class="form-control custom-input"
+    [formControl]="control"
+    [placeholder]="placeholder"
+  >
+  </textarea>
+  }@else {
+  <input
+    [type]="type"
+    class="form-control rounded-pill custom-input"
+    [formControl]="control"
+    [placeholder]="placeholder"
+  />
+  }
+
+  <div
+    *ngIf="viewError && control.invalid && control.touched"
+    class="col-md-12 col-sm-12"
+  >
+    <mat-error class="invalid-feedback">{{ getErrorMessage() }}</mat-error>
+  </div>
+</div>

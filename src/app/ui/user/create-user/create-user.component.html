@@ -1,0 +1,81 @@
+<ftx-layout-page [title]="'Usuarios'">
+  <div class="container-fluid">
+    <div class="col-10 mx-auto mt-4">
+      <ftx-card>
+        <div card-header class="row align-items-center">
+          <div class="col-12 d-flex justify-content-center align-items-center">
+            <h3><ftx-icon [icon]="'create'" />Crear usuarios</h3>
+          </div>
+        </div>
+        <div card-content>
+          <form class="row">
+            <div style="width: 100% !important" *ngIf="!isLoading">
+              <div class="col-md-10 mx-auto col-sm-10">
+                <div class="row mt-2 text-center">
+                  <div class="col-lg-6 col-12 mb-3">
+                    <ftx-input
+                      [formGroup]="userForm"
+                      [controlName]="'Name'"
+                      [label]="'Nombre'"
+                      [placeholder]="'Nombre del usuario'"
+                    />
+                  </div>
+                  <div class="col-lg-6 col-12 mb-3">
+                    <ftx-input
+                      [formGroup]="userForm"
+                      [controlName]="'Surname'"
+                      [label]="'Apellido'"
+                      [placeholder]="'Apellido del usuario'"
+                    />
+                  </div>
+
+                  <div class="col-lg-6 col-sm-12 mb-3">
+                    <ftx-input
+                      [formGroup]="userForm"
+                      [controlName]="'Email'"
+                      [label]="'Correo electrónico'"
+                      [placeholder]="'Correo electrónico'"
+                    />
+                  </div>
+                  <div
+                    class="col-lg-6 col-12 d-block d-lg-flex mb-3 justify-content-between align-items-center"
+                  >
+                    <div class="col-12 col-lg-3 mb-3 mb-lg-0">
+                      <ftx-select
+                        [formGroup]="userForm"
+                        [controlName]="'IdentityDocumentType'"
+                        label="Tipo"
+                        [elements]="tipoNitsFormated"
+                        [viewError]="false"
+                      />
+                    </div>
+                    <div class="col-12 col-lg-8">
+                      <ftx-input
+                        [formGroup]="userForm"
+                        [controlName]="'Document'"
+                        [label]="'Número de documento'"
+                        [placeholder]="'Número de documento'"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-3 mb-3">
+                  <div class="col-12 text-center">
+                    <ftx-button
+                      [content]="'Guardar'"
+                      (eventClick)="save()"
+                      [disabled]="!userForm.valid"
+                      [icon]="'save'"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <app-ftx-spinner *ngIf="isLoading" />
+          </form>
+          <ftx-divider />
+        </div>
+      </ftx-card>
+    </div>
+  </div>
+</ftx-layout-page>

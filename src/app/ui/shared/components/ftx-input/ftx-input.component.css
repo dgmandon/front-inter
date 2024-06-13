@@ -1,0 +1,42 @@
+.custom-input {
+  border: 1px solid #ced4da; /* Establece un borde personalizado */
+  border-radius: 20px; /* Ajusta el radio de borde para hacerlo ovalado */
+  padding: 8px 12px; /* Ajusta el relleno según sea necesario */
+  /* Añade cualquier otro estilo personalizado que desees */
+}
+
+/* Anula los estilos de Angular Material */
+.mat-form-field {
+  width: 100%; /* Establece el ancho según sea necesario */
+  box-sizing: border-box; /* Evita que los bordes y el relleno afecten el ancho total */
+}
+
+.mat-form-field-underline, .mat-form-field-subscript-wrapper, .mat-form-field-ripple {
+  display: none; /* Oculta la línea de abajo y cualquier otro elemento subyacente */
+}
+
+.mat-form-field-appearance-fill .mat-form-field-infix {
+  padding: 0; /* Ajusta el relleno según sea necesario */
+}
+
+.invalid-feedback {
+  color: red !important;
+  margin-top: 3px !important;
+  display: block;
+}
+
+.labelInput {
+  text-align: left;
+  font-size: 16px; /* Cambia el tamaño de fuente a 16px, puedes ajustarlo según lo necesites */
+  font-weight: bold;
+  color: gray;
+}
+@media screen and (max-width: 600px)  {
+  .labelInput {
+    font-size: 14px;
+  }
+}
+.textDiv{
+  text-align: justify;
+
+}

@@ -5,11 +5,5 @@ import { Observable } from "rxjs";
 
 export abstract class UserService {
   abstract createUser(user: CreateUser): Observable<void>;
-  abstract getAll(
-    pageNumber: number,
-    pageSize: number,
-    filter?: string
-  ): Observable<Paginated<User>>;
-  abstract delete(id: string): Observable<void>;
-  abstract putCreateUser(userId: string, user: CreateUser): Observable<void>;
+  abstract getAll(identification: string, subjectId: string): Observable<User[]>;
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "../../../core/models/user/user.model";
 import { UserService } from "@core/services/user-service.interface";
-import { SearchService } from "../../contents/services/services.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FtxDialogComponent } from "../../shared/components/ftx-dialog/ftx-dialog.component";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-user-list",
@@ -21,59 +21,30 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private searchService: SearchService,
-    private dialog: MatDialog
-  ) {
-    this.searchService.event.subscribe((data) => {
-      this.dataSearch = data;
-      this.fetchUsers(this.currentPage, this.itemsPerPage, this.dataSearch);
-    });
+    private dialog: MatDialog,
+    private router: ActivatedRoute
+  ) {;
   }
   ngOnInit(): void {
-    this.fetchUsers(this.currentPage, this.itemsPerPage, this.dataSearch);
+    this.router.params.subscribe(params => {
+      let identification: string = params['identification'];
+      let subjectId: string = params['subjectId'];
+      this.fetchUsers(identification, subjectId);
+    });
   }
   public fetchUsers(
-    pageNumber: number,
-    pageSize: number,
-    filter?: string
+    identification: string,
+    subjectId: string
   ): void {
     this.userService
-      .getAll(pageNumber, pageSize, filter)
+      .getAll(identification, subjectId)
       .subscribe((result) => {
-        this.users = result.data;
-        this.totalItems = result.totalCount;
-        this.itemsPerPage = result.pageSize;
+        this.users = result;
+        this.totalItems = result.length;
       });
-  }
-  public showModalDelete(element: User): void {
-    const dialogResult = this.dialog.open(FtxDialogComponent, {
-      data: { content: "¿Desea eliminar este usuario?" },
-    });
-
-    dialogResult.afterClosed().subscribe((result) => {
-      if (result) {
-        this.userService.delete(element.id).subscribe(() => {
-          this.fetchUsers(this.currentPage, this.itemsPerPage, this.dataSearch);
-        });
-      }
-    });
   }
 
   onPageChange(event: any) {
-    this.currentPage = event.pageIndex;
-    this.itemsPerPage = event.pageSize;
-    this.fetchUsers(this.currentPage + 1, this.itemsPerPage, this.dataSearch);
-  }
-
-  getTypeUserSpanish(role: string): string {
-    switch (role) {
-      case 'AdministratorCustomer':
-        return 'Administrador Compañia';
-      case 'AuxiliarCustomer':
-        return 'Auxiliar';
-      default:
-        return 'Desconocido';
-    }
   }
 
 }

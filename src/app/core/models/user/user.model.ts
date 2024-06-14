@@ -1,4 +1,3 @@
-import { DocumentType } from "../document-type/document-type.model";
 export class User {
   id: string;
   name: string;

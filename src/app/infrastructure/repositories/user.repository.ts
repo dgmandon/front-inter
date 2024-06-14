@@ -11,37 +11,20 @@ import { Observable, concatMap, map } from "rxjs";
   providedIn: "root",
 })
 export class UserRepository extends UserService {
-  override delete(id: string): Observable<void> {
-    return this.httpService.doDelete(`${this.baseUrl}/${id}`);
-  }
-  baseUrl = `${environment.identityAppUrl}${environment.apiSuffix}${resources.user}`;
+  baseUrl = `${environment.apiUrl}${environment.apiSuffix}${resources.user}`;
   constructor(protected httpService: HttpService) {
     super();
   }
   override createUser(user: CreateUser): Observable<void> {
-    return this.postCreateUserId().pipe(
-      concatMap((userId) => this.putCreateUser(userId, user))
-    );
+    return this.httpService.doPost<CreateUser, void>(this.baseUrl, user);
   }
-  private postCreateUserId(): Observable<string> {
-    return this.httpService
-      .doPost<null, { userId: string }>(this.baseUrl, null)
-      .pipe(map((result) => result.userId));
-  }
-  override putCreateUser(userId: string, user: CreateUser): Observable<void> {
-    return this.httpService.doPut<CreateUser, void>(
-      `${this.baseUrl}/${userId}`,
-      user
-    );
-  }
+
   override getAll(
-    pageNumber: number,
-    pageSize: number,
-    filter: string
+    identification: string,
+    subjectId: string
   ): Observable<any> {
-    return this.httpService.doGet<Paginated<User>>(
-      `${this.baseUrl}` +
-        `?pageNumber=${pageNumber}&pageSize=${pageSize}&filter=${filter}&companyId=${"3fa85f64-5717-4562-b3fc-2c963f66afa6"}`
+    return this.httpService.doGet<User[]>(
+      `${this.baseUrl}/${identification}/${subjectId}`
     );
   }
 }

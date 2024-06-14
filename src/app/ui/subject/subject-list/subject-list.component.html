@@ -5,11 +5,23 @@
   <div class="col-sm-6 col-xl-4 col-12">
     <ftx-item [Title]="user.name">
       <ng-container content>
+        <p class="p-item"><strong>Rol: </strong> {{ getTypeUserSpanish(user.rol) }}</p>
         <p class="p-item">
           <strong>Identificación: </strong
-          > {{user.documentType}} {{ user.document}}
+          > {{user.documentType.code}} {{ user.document}}
         </p>
         <p class="p-item"><strong>Email: </strong> {{ user.email }}</p>
+      </ng-container>
+      <ng-container footer>
+        <div class="d-flex">
+          <ftx-button
+            [content]="'Eliminar'"
+            [buttonType]="'danger'"
+            [icon]="'delete_forever'"
+            (eventClick)="showModalDelete(user)"
+            [onlyIcon]="true"
+          />
+        </div>
       </ng-container>
     </ftx-item>
   </div>

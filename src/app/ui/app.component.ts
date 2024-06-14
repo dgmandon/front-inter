@@ -1,82 +1,47 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
-  ActivatedRoute,
-  NavigationEnd,
   Router,
   RouterLink,
   RouterOutlet,
 } from "@angular/router";
 import { SharedModule } from "./shared/shared.module";
 import { MODULES } from "./routes.constants";
-import { MatSidenav } from "@angular/material/sidenav";
-interface menu {
-  id: Number;
-  name: string;
-  router: string;
-  icon: string;
-  alt: string;
-}
+import { LoginService } from "@core/services/login-service.interface";
+import { LoginRepository } from "@infrastructure/repositories/login.repository";
+import { HttpService } from "@infrastructure/http/http.service";
+import { AuthResponse } from "@core/models/login/auth-response.model";
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [CommonModule, RouterOutlet, SharedModule, RouterLink],
+  imports: [CommonModule, RouterOutlet, SharedModule, RouterLink ],
+  providers: [ HttpService, { provide: LoginService, useClass: LoginRepository } ],
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.css",
 })
 export class AppComponent {
-  protected readonly MODULES = MODULES;
+  studentName!: string;
+  userLogged: boolean = false;
+  userRegister: boolean = false;
+  MODULES = MODULES;
 
-  menu!: menu[];
-  @ViewChild("sidenav")
-  title: string = "test";
-  menuOpened = true;
-  menuWidth = 250;
-  sidenav!: MatSidenav;
-  isExpanded = false;
-  showSubmenu: boolean = true;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
-
-  constructor() {
-    this.menu = [
-      {
-        id: 1,
-        name: "Contenidos",
-        router: MODULES.CONTENTS.CONTENT,
-        icon: "../../assets/icon_menu_empresa.svg",
-        alt: "icon_menu_empresa",
-      },
-      {
-        id: 2,
-        name: "Usuarios",
-        router: MODULES.USERS.USER,
-        icon: "../../assets/icon_admon_usuario.svg",
-        alt: "icon_parametros",
-      },
-      {
-        id: 3,
-        name: "Ordenes",
-        router: MODULES.ORDERS.ORDER_SERVICE,
-        icon: "../../assets/icon_mi_empresa.svg",
-        alt: "icon_parametros",
-      },
-    ];
+  constructor(private router: Router) 
+  {    
   }
 
   ngOnInit(): void {
-    localStorage.setItem("companyId", "4713bf89-dc12-4ac5-56fc-08dc24260235");
-  }
-
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
+    let stringAuth: string | null = localStorage.getItem("auth");
+    if (stringAuth) {
+      let auth: AuthResponse = JSON.parse(stringAuth);
+      this.studentName = auth.name;
+      this.userLogged = true;
+      this.router.navigate([MODULES.USERS.USER]);
     }
   }
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
+  logout() {
+    localStorage.removeItem("auth");
+    this.studentName = '';
+    this.userLogged = false;
   }
 }

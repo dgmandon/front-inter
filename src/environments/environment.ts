@@ -3,18 +3,15 @@ export const environment = {
   appConfig: "dev",
   pathConfig: "./assets/config",
   apiSuffix: "/api/v1/",
-  companyAppUrl: "https://az-qrcustomlink-back-company-appservice-dev.azurewebsites.net",
-  contentAppUrl: "https://az-qrcustomlink-back-content-appservice-dev.azurewebsites.net",
-  orderAppUrl: "https://az-qrcustomlink-back-order-appservice-dev.azurewebsites.net",
-  identityAppUrl: "https://az-qrcustomlink-back-identity-appservice-dev.azurewebsites.net"
+  apiUrl: "https://fcab-186-169-66-12.ngrok-free.app"
 };
 
 export const resources = {
-  company: "companies",
+  login: "auths",
   commercialSegments: "commercial-segments",
   documentTypes: "document-types",
   content: "contents",
-  user: "users",
+  user: "students",
   order: "orders",
   link: "links"
 };

@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
   formControl!: FormGroup;
   filter!: string;
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {}
   private CreateForm(): void {
     this.formControl = this.formBuilder.group({

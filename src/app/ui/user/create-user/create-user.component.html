@@ -15,54 +15,32 @@
                   <div class="col-lg-6 col-12 mb-3">
                     <ftx-input
                       [formGroup]="userForm"
-                      [controlName]="'Name'"
-                      [label]="'Nombre'"
-                      [placeholder]="'Nombre del usuario'"
+                      [controlName]="'Identification'"
+                      [label]="'Identificación'"
+                      [placeholder]="'Identificación'"
                     />
                   </div>
                   <div class="col-lg-6 col-12 mb-3">
                     <ftx-input
                       [formGroup]="userForm"
-                      [controlName]="'Surname'"
-                      [label]="'Apellido'"
-                      [placeholder]="'Apellido del usuario'"
+                      [controlName]="'Name'"
+                      [label]="'Nombre'"
+                      [placeholder]="'Nombre del usuario'"
                     />
-                  </div>
-
-                  <div class="col-lg-6 col-sm-12 mb-3">
-                    <ftx-input
-                      [formGroup]="userForm"
-                      [controlName]="'Email'"
-                      [label]="'Correo electrónico'"
-                      [placeholder]="'Correo electrónico'"
-                    />
-                  </div>
-                  <div
-                    class="col-lg-6 col-12 d-block d-lg-flex mb-3 justify-content-between align-items-center"
-                  >
-                    <div class="col-12 col-lg-3 mb-3 mb-lg-0">
-                      <ftx-select
-                        [formGroup]="userForm"
-                        [controlName]="'IdentityDocumentType'"
-                        label="Tipo"
-                        [elements]="tipoNitsFormated"
-                        [viewError]="false"
-                      />
-                    </div>
-                    <div class="col-12 col-lg-8">
-                      <ftx-input
-                        [formGroup]="userForm"
-                        [controlName]="'Document'"
-                        [label]="'Número de documento'"
-                        [placeholder]="'Número de documento'"
-                      />
-                    </div>
                   </div>
                 </div>
                 <div class="row mt-3 mb-3">
-                  <div class="col-12 text-center">
+                  <div class="col-6" style="text-align: end;">
                     <ftx-button
-                      [content]="'Guardar'"
+                      [buttonType]="'secondary'"
+                      [content]="'Volver'"
+                      (eventClick)="back()"
+                      [icon]="'arrow_back'"
+                    />
+                  </div>
+                  <div class="col-6 justify-content-center">
+                    <ftx-button
+                      [content]="'Registrarse'"
                       (eventClick)="save()"
                       [disabled]="!userForm.valid"
                       [icon]="'save'"

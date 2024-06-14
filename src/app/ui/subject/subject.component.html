@@ -1,0 +1,32 @@
+<ftx-layout-page [title]="'Mis materias'">
+  <div class="container-fluid">
+    <div class="col-12 mx-auto mt-4">
+      <ng-container>
+        <div class="row d-flex justify-content-between">
+          <div class="col-8 col-md-4">
+            <ftx-input
+              [viewLabel]="false"
+              [placeholder]="'Búsqueda por nombre'"
+              [formGroup]="formControl"
+              [controlName]="'user'"
+              (searchEvent)="handleSearchEvent($event)"
+            />
+          </div>
+
+          <div class="col-4 col-md-6 d-flex justify-content-end">
+            <ftx-button
+              [positionIcon]="'left'"
+              [icon]="'add_circle'"
+              [content]="'Nuevo usuario'"
+              [routerLink]="[MODULES.USERS.CREATE]"
+            />
+          </div>
+        </div>
+        <div class="row mt-2">
+          <app-user-list />
+        </div>
+        <ftx-divider />
+      </ng-container>
+    </div>
+  </div>
+</ftx-layout-page>
